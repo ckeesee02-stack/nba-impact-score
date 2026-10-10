@@ -43,7 +43,7 @@ Box-score stats explain about **26%** of the variance (test R² 0.26; full-sampl
 | ORB | -0.004 | 0.028 | -0.156 | n.s. | .914 |
 | 3P% | 0.003 | 0.018 | 0.145 | n.s. | .909 |
 
-Classical OLS standard errors on z-scored variables. Because the same players appear in multiple seasons, the last column repeats the test with standard errors clustered by player (888 clusters). Every conclusion holds except two: FT% is no longer significant (p = .068), and BLK weakens to p = .009. Details in [`results/repeated_players.json`](results/repeated_players.json). HC3 heteroskedasticity-robust standard errors give the same significance conclusions (FT% p = .039); both are in [`results/ols_coefficients.csv`](results/ols_coefficients.csv). Full R-style output: [`results/ols_summary.txt`](results/ols_summary.txt).
+Classical OLS standard errors on z-scored variables. Because the same players appear in multiple seasons, the last column repeats the test with standard errors clustered by player (888 clusters). Every conclusion holds except FT%, which is no longer significant (p = .068). BLK stays significant but weakens to p = .009. Details in [`results/repeated_players.json`](results/repeated_players.json). HC3 heteroskedasticity-robust standard errors give the same significance conclusions (FT% p = .039); both are in [`results/ols_coefficients.csv`](results/ols_coefficients.csv). Full R-style output: [`results/ols_summary.txt`](results/ols_summary.txt).
 
 ### Relative weights: share of the explained 26%
 
