@@ -1,0 +1,30 @@
+Call:
+lm(formula = ImpactScore ~ FG + `3PA` + `3P%` + `2P%` + `eFG%` + FTA + `FT%` + ORB + DRB + AST + STL + BLK + TOV + PF, data = model_data_standardized)
+
+Residuals:
+      Min        1Q    Median        3Q       Max
+  -3.1681   -0.5841    0.0159    0.5658    2.6404
+
+Coefficients:
+              Estimate Std. Error  t value  Pr(>|t|)
+(Intercept)   0.000000   0.014449    0.000    1.0000 
+FG            0.030984   0.025389    1.220    0.2224 
+`3PA`         0.145219   0.021739    6.680  2.76e-11 ***
+`3P%`         0.002614   0.017982    0.145    0.8844 
+`2P%`        -0.025507   0.026373   -0.967    0.3335 
+`eFG%`        0.304808   0.026176   11.645   < 2e-16 ***
+FTA           0.242836   0.023322   10.413   < 2e-16 ***
+`FT%`         0.042432   0.018200    2.331    0.0198 *
+ORB          -0.004361   0.028020   -0.156    0.8763 
+DRB           0.173707   0.022003    7.895  3.85e-15 ***
+AST           0.347800   0.024350   14.283   < 2e-16 ***
+STL           0.212683   0.015765   13.491   < 2e-16 ***
+BLK           0.073522   0.020095    3.659  0.000257 ***
+TOV          -0.389166   0.028101  -13.849   < 2e-16 ***
+PF           -0.029841   0.019015   -1.569    0.1167 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.8587 on 3517 degrees of freedom
+Multiple R-squared:  0.2655,    Adjusted R-squared:  0.2626
+F-statistic: 90.83 on 14 and 3517 DF,  p-value: < 2.2e-16

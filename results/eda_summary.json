@@ -1,0 +1,66 @@
+{
+  "qualified_player_seasons": 3626,
+  "model_player_seasons": 3532,
+  "unique_players": 888,
+  "per_season": {
+    "2016-17": 341,
+    "2017-18": 340,
+    "2018-19": 348,
+    "2019-20": 331,
+    "2020-21": 357,
+    "2021-22": 366,
+    "2022-23": 362,
+    "2023-24": 352,
+    "2024-25": 366,
+    "2025-26": 369
+  },
+  "minutes": {
+    "count": 3532.0,
+    "mean": 1511.0,
+    "std": 614.0,
+    "min": 500.0,
+    "25%": 984.0,
+    "50%": 1476.0,
+    "75%": 1995.0,
+    "max": 3048.0
+  },
+  "oncourt": {
+    "mean": -0.3893827859569649,
+    "sd": 6.122442058407694,
+    "skew": -0.08926575154193726
+  },
+  "onoff": {
+    "mean": 0.20416194790486974,
+    "sd": 5.583128102156355,
+    "skew": -0.0325653186118509
+  },
+  "r_oncourt_onoff": 0.6003892959930625,
+  "target_skew": -0.029755783570934603,
+  "target_kurtosis": 0.13091045326224338,
+  "target_beyond_3sd": 14,
+  "r_target_minutes": 0.3141495589200782,
+  "top3": [
+    {
+      "Season": "2020-21",
+      "Player": "Rudy Gobert",
+      "ImpactScore": 3.44
+    },
+    {
+      "Season": "2016-17",
+      "Player": "Chris Paul",
+      "ImpactScore": 3.31
+    },
+    {
+      "Season": "2022-23",
+      "Player": "Nikola Joki\u0107",
+      "ImpactScore": 3.3
+    }
+  ],
+  "bottom": [
+    {
+      "Season": "2021-22",
+      "Player": "Brandon Williams",
+      "ImpactScore": -3.43
+    }
+  ]
+}
