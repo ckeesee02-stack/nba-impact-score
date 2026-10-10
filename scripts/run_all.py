@@ -8,7 +8,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "figures"))
 
 steps = ["02_build_dataset.py", "03_minutes_cutoff.py", "04_collinearity.py", "05_model.py",
-         "06_relative_weights.py", "07_eda.py",
+         "06_relative_weights.py", "07_eda.py", "08_repeated_players.py",
          "figures/positive_contribution.py", "figures/impact_score_eda.py",
          "figures/minutes_cutoff.py", "figures/ols_summary.py"]
 if "--scrape" in sys.argv:

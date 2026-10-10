@@ -1,0 +1,151 @@
+{
+  "n_rows": 3532,
+  "n_players": 888,
+  "cross_validation": {
+    "n_splits": 5,
+    "n_repeats": 20,
+    "model": "OLS on the 14 model stats",
+    "row_folds": {
+      "r2_mean": 0.2564,
+      "r2_sd": 0.0294,
+      "r2_min": 0.1612,
+      "r2_max": 0.3053,
+      "rmse_mean": 0.8611
+    },
+    "player_grouped_folds": {
+      "r2_mean": 0.2494,
+      "r2_sd": 0.0378,
+      "r2_min": 0.1542,
+      "r2_max": 0.3395,
+      "rmse_mean": 0.864
+    }
+  },
+  "clustered_ols": [
+    {
+      "stat": "FG",
+      "beta": 0.031,
+      "se_classical": 0.0254,
+      "p_classical": "0.2224",
+      "se_clustered": 0.033,
+      "t_clustered": 0.94,
+      "p_clustered": "0.3477"
+    },
+    {
+      "stat": "3PA",
+      "beta": 0.1452,
+      "se_classical": 0.0217,
+      "p_classical": "<.0001",
+      "se_clustered": 0.027,
+      "t_clustered": 5.374,
+      "p_clustered": "<.0001"
+    },
+    {
+      "stat": "3P%",
+      "beta": 0.0026,
+      "se_classical": 0.018,
+      "p_classical": "0.8844",
+      "se_clustered": 0.0228,
+      "t_clustered": 0.115,
+      "p_clustered": "0.9086"
+    },
+    {
+      "stat": "2P%",
+      "beta": -0.0255,
+      "se_classical": 0.0264,
+      "p_classical": "0.3335",
+      "se_clustered": 0.0292,
+      "t_clustered": -0.873,
+      "p_clustered": "0.3827"
+    },
+    {
+      "stat": "eFG%",
+      "beta": 0.3048,
+      "se_classical": 0.0262,
+      "p_classical": "<.0001",
+      "se_clustered": 0.0301,
+      "t_clustered": 10.129,
+      "p_clustered": "<.0001"
+    },
+    {
+      "stat": "FTA",
+      "beta": 0.2428,
+      "se_classical": 0.0233,
+      "p_classical": "<.0001",
+      "se_clustered": 0.0287,
+      "t_clustered": 8.448,
+      "p_clustered": "<.0001"
+    },
+    {
+      "stat": "FT%",
+      "beta": 0.0424,
+      "se_classical": 0.0182,
+      "p_classical": "0.0198",
+      "se_clustered": 0.0232,
+      "t_clustered": 1.83,
+      "p_clustered": "0.0675"
+    },
+    {
+      "stat": "ORB",
+      "beta": -0.0044,
+      "se_classical": 0.028,
+      "p_classical": "0.8763",
+      "se_clustered": 0.0405,
+      "t_clustered": -0.108,
+      "p_clustered": "0.9143"
+    },
+    {
+      "stat": "DRB",
+      "beta": 0.1737,
+      "se_classical": 0.022,
+      "p_classical": "<.0001",
+      "se_clustered": 0.03,
+      "t_clustered": 5.786,
+      "p_clustered": "<.0001"
+    },
+    {
+      "stat": "AST",
+      "beta": 0.3478,
+      "se_classical": 0.0244,
+      "p_classical": "<.0001",
+      "se_clustered": 0.0324,
+      "t_clustered": 10.722,
+      "p_clustered": "<.0001"
+    },
+    {
+      "stat": "STL",
+      "beta": 0.2127,
+      "se_classical": 0.0158,
+      "p_classical": "<.0001",
+      "se_clustered": 0.0203,
+      "t_clustered": 10.475,
+      "p_clustered": "<.0001"
+    },
+    {
+      "stat": "BLK",
+      "beta": 0.0735,
+      "se_classical": 0.0201,
+      "p_classical": "0.0003",
+      "se_clustered": 0.0281,
+      "t_clustered": 2.613,
+      "p_clustered": "0.0091"
+    },
+    {
+      "stat": "TOV",
+      "beta": -0.3892,
+      "se_classical": 0.0281,
+      "p_classical": "<.0001",
+      "se_clustered": 0.035,
+      "t_clustered": -11.107,
+      "p_clustered": "<.0001"
+    },
+    {
+      "stat": "PF",
+      "beta": -0.0298,
+      "se_classical": 0.019,
+      "p_classical": "0.1167",
+      "se_clustered": 0.0259,
+      "t_clustered": -1.154,
+      "p_clustered": "0.2487"
+    }
+  ]
+}

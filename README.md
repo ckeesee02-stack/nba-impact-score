@@ -2,7 +2,7 @@
 
 **Which Per 100 Possessions stats are significantly associated with an NBA player's on-court impact, and how much of that impact can the box score explain?**
 
-Box-score stats explain about **26%** of the variance (test R² 0.26; full-sample R² 0.27) in **Impact Score**, a composite of a player's OnCourt Net Rating and On-Off Net Rating, across 3,532 player-seasons from 2016-17 to 2025-26. Shooting efficiency (eFG%) is the largest contributor; steals, assists and free-throw attempts follow. Turnovers look neutral on their own but become the largest single negative effect once usage is held constant.
+Box-score stats explain about **26%** of the variance (test R² 0.26; full-sample R² 0.27) in **Impact Score**, a composite of a player's OnCourt Net Rating and On-Off Net Rating, across 3,532 player-seasons from 2016-17 to 2025-26. Shooting efficiency (eFG%) is the largest contributor; steals, assists and free-throw attempts follow. Turnovers look neutral on their own but become the largest single negative effect once the other stats are held constant.
 
 ![The Science of Positive Contribution](figures/positive_contribution.png)
 
@@ -26,24 +26,24 @@ Box-score stats explain about **26%** of the variance (test R² 0.26; full-sampl
 
 ### Standardized coefficients (OLS)
 
-| Stat | Estimate | Std. Error | t value | Significance |
-|:-----|-----:|-----:|-----:|-----:|
-| AST | 0.348 | 0.024 | 14.283 | *** (p < 0.001) |
-| TOV | -0.389 | 0.028 | -13.849 | *** (p < 0.001) |
-| STL | 0.213 | 0.016 | 13.491 | *** (p < 0.001) |
-| eFG% | 0.305 | 0.026 | 11.645 | *** (p < 0.001) |
-| FTA | 0.243 | 0.023 | 10.413 | *** (p < 0.001) |
-| DRB | 0.174 | 0.022 | 7.895 | *** (p < 0.001) |
-| 3PA | 0.145 | 0.022 | 6.680 | *** (p < 0.001) |
-| BLK | 0.074 | 0.020 | 3.659 | *** (p < 0.001) |
-| FT% | 0.042 | 0.018 | 2.331 | * (p < 0.05) |
-| PF | -0.030 | 0.019 | -1.569 | n.s. |
-| FG | 0.031 | 0.025 | 1.220 | n.s. |
-| 2P% | -0.026 | 0.026 | -0.967 | n.s. |
-| ORB | -0.004 | 0.028 | -0.156 | n.s. |
-| 3P% | 0.003 | 0.018 | 0.145 | n.s. |
+| Stat | Estimate | Std. Error | t value | Significance | p, clustered by player |
+|:-----|-----:|-----:|-----:|-----:|-----:|
+| AST | 0.348 | 0.024 | 14.283 | *** (p < 0.001) | <.001 |
+| TOV | -0.389 | 0.028 | -13.849 | *** (p < 0.001) | <.001 |
+| STL | 0.213 | 0.016 | 13.491 | *** (p < 0.001) | <.001 |
+| eFG% | 0.305 | 0.026 | 11.645 | *** (p < 0.001) | <.001 |
+| FTA | 0.243 | 0.023 | 10.413 | *** (p < 0.001) | <.001 |
+| DRB | 0.174 | 0.022 | 7.895 | *** (p < 0.001) | <.001 |
+| 3PA | 0.145 | 0.022 | 6.680 | *** (p < 0.001) | <.001 |
+| BLK | 0.074 | 0.020 | 3.659 | *** (p < 0.001) | .009 |
+| FT% | 0.042 | 0.018 | 2.331 | * (p < 0.05) | .068 (n.s.) |
+| PF | -0.030 | 0.019 | -1.569 | n.s. | .249 |
+| FG | 0.031 | 0.025 | 1.220 | n.s. | .348 |
+| 2P% | -0.026 | 0.026 | -0.967 | n.s. | .383 |
+| ORB | -0.004 | 0.028 | -0.156 | n.s. | .914 |
+| 3P% | 0.003 | 0.018 | 0.145 | n.s. | .909 |
 
-Classical OLS standard errors on z-scored variables. HC3 heteroskedasticity-robust standard errors give the same significance conclusions (FT% p = .039); both are in [`results/ols_coefficients.csv`](results/ols_coefficients.csv). Full R-style output: [`results/ols_summary.txt`](results/ols_summary.txt).
+Classical OLS standard errors on z-scored variables. Because the same players appear in multiple seasons, the last column repeats the test with standard errors clustered by player (888 clusters). Every conclusion holds except two: FT% is no longer significant (p = .068), and BLK weakens to p = .009. Details in [`results/repeated_players.json`](results/repeated_players.json). HC3 heteroskedasticity-robust standard errors give the same significance conclusions (FT% p = .039); both are in [`results/ols_coefficients.csv`](results/ols_coefficients.csv). Full R-style output: [`results/ols_summary.txt`](results/ols_summary.txt).
 
 ### Relative weights: share of the explained 26%
 
@@ -67,6 +67,8 @@ Classical OLS standard errors on z-scored variables. HC3 heteroskedasticity-robu
 \*TOV has a negative relationship: with other stats held equal, more turnovers means a lower Impact Score.
 
 Relative weights (Johnson, 2000) split R² across correlated predictors and sum to the model R². Each weight was also tested against a random noise variable over 5,000 bootstrap resamples (Tonidandel, LeBreton & Johnson, 2009); all 14 exceed it, which at n = 3,532 says little, so the table above is ranked by share of R².
+
+Relative weights and coefficients answer different questions. 2P% (8.9%) and FG (5.9%) carry real weight even though their coefficients are near zero and not significant. Both overlap heavily with eFG%: relative weights credit a stat for variance it shares with other predictors, while a coefficient reflects only what the stat adds once everything else is in the model. Once eFG% is in, 2P% and FG add almost nothing unique.
 
 ---
 
@@ -109,7 +111,8 @@ See [`data/README.md`](data/README.md) for the data dictionary. The data files t
 - **Multiple linear regression with an elastic net** to limit overfitting (α = 0.0018, l1_ratio = 0.95, mostly lasso), tuned by 5-fold cross-validation over α ∈ 10^[-4, 0] and l1_ratio ∈ {0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 1.0}.
 - **80/20 train/test split** (2,826 / 706).
 - **Repeated 5-fold cross-validation** (20 repeats) on the training set.
-- **Full-sample OLS** for standardized β, standard errors and p-values (classical and HC3).
+- **Player-grouped repeated 5-fold cross-validation** on the full sample (every season of a player in the same fold), to check that repeat players are not inflating the fit.
+- **Full-sample OLS** for standardized β, standard errors and p-values (classical, HC3, and clustered by player).
 - **Relative weights analysis** (Johnson, 2000) for each stat's share of R², with bootstrap significance testing.
 
 ---
@@ -125,8 +128,10 @@ See [`data/README.md`](data/README.md) for the data dictionary. The data files t
 | Repeated 5-fold CV RMSE | 0.88 |
 | Full-sample OLS R² / Adj. R² | 0.27 / 0.26 |
 | OLS F-test | F(14, 3517) = 90.8, p < .001 |
+| Row-level repeated 5-fold CV R², full sample (OLS) | 0.26 (SD 0.03) |
+| Player-grouped repeated 5-fold CV R², full sample (OLS) | 0.25 (SD 0.04) |
 
-Train, test and cross-validated R² are nearly identical, so the model is not overfitting. The elastic net's coefficients are almost identical to OLS because VIF pruning already handled the collinearity.
+Train, test and cross-validated R² are nearly identical, so the model is not overfitting. Holding out whole players (every season of a player in the same fold) lowers cross-validated R² only from 0.26 to 0.25, so repeat players are not inflating the fit: the model predicts players it has never seen about as well. The elastic net's coefficients are almost identical to OLS because VIF pruning already handled the collinearity.
 
 ---
 
@@ -153,7 +158,7 @@ Train, test and cross-validated R² are nearly identical, so the model is not ov
 | AST | +.16 | TOV* | +.03 |
 | DRB | +.15 | PF | -.09 |
 
-\*TOV turns negative once usage is held constant (see model).
+\*TOV turns negative once the other stats are held constant (see model).
 
 ![Under the Hood](figures/impact_score_eda.png)
 
@@ -164,7 +169,7 @@ Train, test and cross-validated R² are nearly identical, so the model is not ov
 1. **eFG% is the top variable by relative weight**, accounting for 21.9% of the explained 26%.
 2. **Four stats explain over half of the explained variance:** eFG%, STL, AST and FTA (58.4% combined).
 3. **The box score has a ceiling.** Per-possession box-score stats explain about a quarter of Impact Score, though the model is clearly significant.
-4. **Turnovers are hidden by usage.** TOV is near zero on its own (r = .03) but has the largest single effect once usage is held constant (β = -.39).
+4. **Turnovers are masked by volume.** TOV is near zero on its own (r = .03), likely because players who handle the ball more also contribute more in other ways. Once the other stats are held constant, it has the largest single effect (β = -.39).
 
 ---
 
@@ -173,7 +178,7 @@ Train, test and cross-validated R² are nearly identical, so the model is not ov
 - Correlation does not imply causation.
 - 74% of the variance in Impact Score is not explained by the model (lineup context, defense the box score misses, and noise).
 - The target is built from traditionally noisy on/off measures.
-- The same players appear in multiple seasons, so rows are not independent.
+- The same players appear in multiple seasons, so rows are not independent. Player-grouped cross-validation and player-clustered standard errors account for this: the R² holds, but FT% is no longer significant.
 
 ---
 
@@ -212,13 +217,14 @@ nba-impact-score/
 │   └── raw/                    generated by the scraper
 ├── scripts/
 │   ├── common.py               constants, paths, Impact Score, VIF, relative weights
-│   ├── 01_scrape_bbref.py      optional data download
+│   ├── 01_scrape_bbref.py      data download (run first: run_all.py --scrape)
 │   ├── 02_build_dataset.py     filtering, Impact Score, train/test split
 │   ├── 03_minutes_cutoff.py    year-to-year reliability by minutes cutoff
 │   ├── 04_collinearity.py      VIF pruning
 │   ├── 05_model.py             elastic net, CV, OLS, cutoff sensitivity
 │   ├── 06_relative_weights.py  relative weights + bootstrap test
 │   ├── 07_eda.py               exploratory summaries
+│   ├── 08_repeated_players.py  player-grouped CV, player-clustered standard errors
 │   ├── run_all.py              runs everything in order
 │   └── figures/                one script per figure
 ├── results/                    generated CSV / JSON / TXT outputs
